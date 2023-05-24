@@ -7,10 +7,9 @@
     |____/|______|_|  |_|    |_|   \____/ 
                                        
                                        
-## Matlab Code zu dem Modul "schnelle Randelementmethoden für Ingenieure" aus dem SoSe 2023
+## GNU Octave Code zu dem Modul "schnelle Randelementmethoden für Ingenieure" aus dem SoSe 2023
 
-
-Das Modul umfasst fünf Übungen mit aufeinander aufbauenden Themen zur Implementierung eines Boundary-Element solvers für PDEs (Laplace und/oder Maxwellgleichungen). Zentrale Themen der Übungsblätter:
+Das Modul umfasst fünf Übungen mit aufeinander aufbauenden Themen zur Implementierung eines Boundary-Element solvers für PDEs (Laplace und/oder Maxwellgleichungen). Obwohl Octave und Matlab viele Gemeinsamkeiten haben wird der Code nicht ohne weiteres in Matlab durchlaufen. Zentrale Themen der Übungsblätter:
 
 # Übungsblatt 1 - U1
 
