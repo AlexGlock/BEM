@@ -25,8 +25,8 @@ elseif(method == 'g')
     p2 = [Geom(i+1,1); Geom(i+1,2)];
     l = norm(p1-p2);
     % contant basis function (1), so only own basis relevant
-    fun = @(w) data(w*p1(1)+(1-w)*p2(1), w*p1(2)+(1-w)*p2(2), method)
-    rhs(i) = l*quadgk(fun,0,1)
+    fun = @(w) data(w*p1(1)+(1-w)*p2(1), w*p1(2)+(1-w)*p2(2), method);
+    rhs(i) = l*quadgk(fun,0,1);
   endfor
 
 end

@@ -6,7 +6,7 @@ close all;
 num = 15;
 
 % Choose Method: 'c' for collocation, 'g' for Galerkin
-method = 'c'
+method = 'g'
 % Choose Geometry and corresponding rhs. 'l' for LShape, 's' for circle
 geometry = 'l';
 
