@@ -1,7 +1,7 @@
 clear all;
 close all;
 
-% The approximate amount of elements to start with. The real number
+% The approximate amount of elements to start with. The real number 
 % will be determined by mkGeom.
 num = 10;
 
@@ -19,10 +19,10 @@ Geom = mkGeom(num,geometry);
 
 % Assemble the matrix
 A = mkMat(Geom,method);
-
+  
 % Assemble the RHS
 U = mkRHS(Geom,geometry,method);
-
+  
 % Direct solver (CG wont work for collocation)
 X = A\U';
 
