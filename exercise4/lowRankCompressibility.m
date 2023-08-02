@@ -5,19 +5,19 @@ close all;
 % a)
 
 N = 100;
-d = 2;
+d = 25;
 
 L = 100;
 
 plot_G = false;
 plot_pcs = false;
-plot_svd_G = false;
-plot_svd_M = true;
+plot_svd = true;
+
 
 % first pointcloud
 points = rand([N, 3])*2-1;
 if plot_pcs
-  figure(1)
+  figure()
   scatter3(points(:,1), points(:,2), points(:,3),"s")
 endif
 
@@ -29,7 +29,7 @@ for idx = (1:N)
   points2(idx,:) = points(idx,:)+vec;
 end
 if plot_pcs
-  figure(1)
+  figure()
   scatter3(points2(:,1), points2(:,2), points2(:,3),"r")
 endif
 
@@ -43,7 +43,7 @@ for i = (1:N)
   endfor
 endfor
 if plot_G
-  figure(2)
+  figure()
   spy(G)
 endif
 
@@ -52,10 +52,10 @@ endif
 
 [U,S,V] = svd(G);
 norm_sv = diag(S)*(1/diag(S)(1));
-if plot_svd_G
-  figure(3)
-  plot(norm_sv);
-  title("normalized singular values of G");
+if plot_svd
+  figure()
+  semilogy(norm_sv)
+  title("singular values of elem. Solution Mat G");
 endif
 
 % c) different values for Param "d" show that a larger distance between clusters
@@ -65,12 +65,12 @@ endif
 % random Matrix compression ----------------------------------------------------
 % d)
 
-M = rand(L,L);
+M = rand(N,N);
 [_,SVS,_] = svd(M);
 norm_svs = diag(SVS)*(1/diag(SVS)(1));
-if plot_svd_M
-  figure(4)
-  plot(norm_svs)
-  title("normalized singular values of random M matrix");
+if plot_svd
+  figure()
+  semilogy(norm_svs)
+  title("normalized singular values of random matrix M");
 endif
 % M is not low rank comressible. singular values are not small enough

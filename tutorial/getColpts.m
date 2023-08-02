@@ -2,6 +2,7 @@
 % Code von Alexander Glock
 function colpts = getColpts(x_vals,y_vals)
 % Collpoints by simple collocation
+
 n = length(x_vals);
 if n ~= length(y_vals)
    msg = 'input data has mismatching dimensions';

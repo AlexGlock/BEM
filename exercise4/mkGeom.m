@@ -34,6 +34,18 @@ elseif( c == 'c')
         geom(i,1) = v(1);
         geom(i,2) = v(2);
 	end
-% end
+% contruction of capacitor geometry
+elseif( c == 'k')
+  geom = zeros(n,2);
+  l = .5/(n/2);
+
+  for i = 1:n/2
+    geom(i,1) = l*i;
+    geom(i,2) = 0;
+  endfor
+  for i = 1:n/2
+    geom(i+n/2,1) = l*i;
+    geom(i+n/2,2) = .5;
+  endfor
 end
 
