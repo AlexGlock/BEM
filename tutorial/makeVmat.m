@@ -1,15 +1,17 @@
-function Vmat = makeVmat(elems)
+function Vmat = makeVmat(pts)
 %MAKEVMAT creates the stiffness matrix for a indirect dirichlet BEM prob.
-n = length(elems(:,1))-1;
+n = length(pts(:,1))-1;
 Vmat = zeros(n, n);
 
-for i=1:n-1
- for j=1:n-1
-    x_i = elems(i,:)';
-    x_ii = elems(i+1,:)';
-    func =@(t) fundamentalEval(x_i,x_ii,t);
+for i=1:n
+    p_i = pts(i,:)';
+ for j=1:n
+    p_j1 = pts(j,:)';
+    p_j2 = pts(j+1,:)';
+    % build integral function
+    Intfunc=@(t) fundamentalEval(p_i, [p_j1, p_j2], t);
     % eval integral
-    Vmat(i, j) = quadgk(func,0,1);
+    Vmat(i, j) = quadgk(Intfunc,0,1);
  end
 end
 

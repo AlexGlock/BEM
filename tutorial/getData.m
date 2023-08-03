@@ -4,17 +4,20 @@ function f_vals = getData(x_vals,y_vals)
 %GETDATA simple evaluation of a two dimensional function
 %   this function is used in order ot get boundary data (dirichlet)
 %   and compare the result to the continous "real" problem distribution
-n = length(x_vals);
-if n ~= length(y_vals)
+[nx, ny] = size(x_vals);
+[nx2, ny2] = size(y_vals);
+if nx ~= nx2 || ny ~= ny2
    msg = 'input data has mismatching dimensions';
    error(msg)
 end
 
-f_vals = zeros(n,1);
+f_vals = zeros(nx,ny);
 f =@(x, y) sin(x)^2 + cos(y)^2;
 
-for i=1:n
-    f_vals(i) = f(x_vals(i), y_vals(i));
+for xi=1:nx
+    for yi=1:ny
+        f_vals(xi,yi) = f(x_vals(xi,yi), y_vals(xi,yi));
+    end
 end
 
 end
