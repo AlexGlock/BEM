@@ -1,21 +1,14 @@
 %% Colpts script - BEM
 % Code von Alexander Glock
-function colpts = getColpts(x_vals,y_vals)
+function colpts = getColpts(pts)
 % Collpoints by simple collocation
 
-n = length(x_vals);
-if n ~= length(y_vals)
-   msg = 'input data has mismatching dimensions';
-   error(msg)
-end
+n = length(pts(:,1))-1;
+colpts=zeros(n,2);
 
-colpts=zeros(n-1,2);
-
-for i=1:n-1
-    % x coord.
-    colpts(i,1) = (x_vals(i)+x_vals(i+1))/2;
-    % y coord.
-    colpts(i,2) = (y_vals(i)+y_vals(i+1))/2;
+for i=1:n
+    % colpts in middle of element
+    colpts(i,:) = .5*(pts(i,:)+pts(i+1,:));
 end
 
 end
