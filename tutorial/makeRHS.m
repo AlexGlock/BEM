@@ -5,7 +5,11 @@ n = length(colpts(:,1));
 rhs = zeros(n,1);
 
 for i = 1:n
-    rhs(i) = getData(colpts(i,1), colpts(i,2)) * norm(pts(i+1,:)-pts(i,:),2);
+    if i==n
+        rhs(i) = getData(colpts(n,1), colpts(n,2));
+    else
+        rhs(i) = getData(colpts(i,1), colpts(i,2));
+    end
 end
 
 end

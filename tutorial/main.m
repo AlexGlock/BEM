@@ -7,17 +7,11 @@ plots = false;
 
 % GEOMETRY ----------------------------------------------------------------
 % n: numer of elements, 'c':= circle
-n = 30;
+n = 20;
 geometry = 'c';
-r = 3;
+r = 1;
 
 points = makeGeometry(n, geometry, r);
-
-if plots == true
-    figure()
-    subplot(1,2,1);
-    scatter(points(:,1), points(:,2), 'x')
-end
 
 % COLLOCATION -------------------------------------------------------------
 colpts = getColpts(points);
@@ -27,8 +21,13 @@ colpts = getColpts(points);
 rhs = makeRHS(points,colpts);
 
 if plots == true
-    subplot(1,2,2);
-    plot3(colpts(:,1), colpts(:,2), rhs, '-r')
+    figure()
+    scatter3(colpts(:,1), colpts(:,2), rhs, 'o','filled','MarkerFaceColor',[1 0 0])
+    hold on
+    for i=1:n
+        plot3([colpts(i,1), colpts(i,1)], [colpts(i,2), colpts(i,2)], [0, rhs(i)], 'b--')
+    end
+    title('collocation points of geometry')
 end
 
 % ASSEMBLY 2 - stiffness matrix -------------------------------------------
@@ -39,7 +38,7 @@ w = Vmat\rhs;
 
 % EVAL FUNDAMENTAL SOLUTION - on a meshgrid -------------------------------
 % grid for potential evaluation
-[ptX,ptY] = circmesh((0:.1:r*.9), (0:6:360)*pi/180);
+[ptX,ptY] = circmesh((0:.1*r:.97*r), (0:6:360)*pi/180);
 %[ptX,ptY] = meshgrid(linspace(-1,1,13),linspace(-1,1,13));
 
 solgrid = solutionEval(ptX,ptY,points,w);
@@ -58,11 +57,3 @@ surf(ptX, ptY, solgrid)
 hold on
 scatter3(colpts(:,1), colpts(:,2), rhs, 'filled','MarkerFaceColor',[1 0 0]);
 title("numeric solution with indirect BEM")
-
-% TODO
-% circular meshing to fill whole domain 
-
-
- 
-
-

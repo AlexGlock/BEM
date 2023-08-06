@@ -3,12 +3,16 @@
 function colpts = getColpts(pts)
 % Collpoints by simple collocation
 
-n = length(pts(:,1))-1;
+n = length(pts(:,1));
 colpts=zeros(n,2);
 
 for i=1:n
     % colpts in middle of element
-    colpts(i,:) = .5*(pts(i,:)+pts(i+1,:));
+    if i==n
+        colpts(i,:) = pts(i,:)+.5*(pts(1,:)-pts(i,:));
+    else
+        colpts(i,:) = pts(i,:)+.5*(pts(i+1,:)-pts(i,:));
+    end
 end
 
 end

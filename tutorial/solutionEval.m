@@ -15,7 +15,11 @@ for i = 1:nx
         for k = 1:n
             % boundary endpoints for one element
             y_i = points(k,:)';
-            y_ii = points(k+1,:)';
+            if k==n
+                y_ii = points(1,:)';
+            else
+                y_ii = points(k+1,:)';
+            end
             % building Integralfunction
             func =@(t) fundamentalEval(x,[y_i,y_ii],t);
             evalgrid(i,j) = evalgrid(i,j) + w(k)*quadgk(func,0,1)*norm(y_i-y_ii,2);

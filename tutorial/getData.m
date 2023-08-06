@@ -12,8 +12,9 @@ if nx ~= nx2 || ny ~= ny2
 end
 
 f_vals = zeros(nx,ny);
-f =@(x,y) x + y + 1;
-% f =@(x, y) sin(x)^2 + cos(y)^2;
+f =@(x,y) x*y+sin(x);
+%f =@(x, y) 2*sin(x)+y;
+%f =@(x, y) sin(x)*cos(y);
 
 for xi=1:nx
     for yi=1:ny
