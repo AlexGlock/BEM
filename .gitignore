@@ -1,2 +1,4 @@
 # ignore materials
 /materials
+# ignore asvs
+*.asv
